@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leader Bot Website - Setup Zone</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle, #050505, #000);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.container {
+    width: 95%;
+    max-width: 520px;
+    text-align: center;
+}
+
+/* Title */
+.title {
+    font-size: 22px;
+    margin-bottom: 12px;
+    animation: fade 3.5s infinite;
+}
+
+@keyframes fade {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* Video */
+video {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(0,140,255,0.3);
+}
+
+/* Timeline */
+.timeline {
+    margin: 12px 0;
+}
+
+.timeline input {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #0a84ff, #00c6ff);
+    cursor: pointer;
+}
+
+.timeline input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0a84ff;
+    transition: transform 0.2s;
+}
+
+.timeline input::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn {
+    flex: 1;
+    margin: 0 5px;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0,140,255,0.25);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(0,140,255,0.6);
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+/* YouTube Button */
+.yt-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 14px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #ff004f, #7a00ff, #00c6ff);
+    background-size: 300%;
+    box-shadow: 0 0 20px rgba(140,0,255,0.6);
+    animation: rgbMove 7s linear infinite, pulse 5.0s infinite;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(0,198,255,1);
+}
+
+@keyframes rgbMove {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 12px rgba(255,0,80,0.4); }
+    50% { box-shadow: 0 0 35px rgba(0,198,255,1); }
+    100% { box-shadow: 0 0 12px rgba(255,0,80,0.4); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">𝗟𝗘𝗔𝗗𝗘𝗥 𝗕𝗢𝗧𝗭 𝗣𝗥𝗢𝗫𝗬 𝗦𝗘𝗧𝗨𝗣</div>
+    <br>
+
+    <video id="video" poster="content://com.android.providers.media.documents/document/image%3A1000501938">
+        <source src="content://com.android.providers.media.documents/document/video%3A1000502015" type="video/mp4">
+    </video>
+
+    <!-- Timeline -->
+    <div class="timeline">
+        <input type="range" id="seekBar" value="0">
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="btn" onclick="playPause()">PLAY ⏯️</button>
+        <button class="btn" onclick="mute()">MUTE 🔇 </button>
+        <button class="btn" onclick="skip()">SKIP 10s</button>
+        <button class="btn" onclick="full()">⛶</button>
+    </div>
+    
+    <br>
+    <br>
+
+    <!-- YouTube Button -->
+    <a href="https://youtu.be/2AcjQDX7XBw?feature=shared" target="_blank" class="yt-btn">
+        WATCH FULL VIDEO YOUTUBE
+    </a>
+
+
+  <a href="https://www.mediafire.com/file/mh3dz55lrwrhxje/Astute+Beta+OB52+-+Leader+Botz.apk/file" target="_blank" class="yt-btn">
+        DOWNLOAD PROXY APK
+    </a>
+
+
+  <a href="https://t.me/+89agJ1vdIdY0MWQ1" target="_blank" class="yt-btn">
+        TELEGRAM CHANNEL
+    </a>
+
+  <a href="http://t.me/itz_vithu07" target="_blank" class="yt-btn">
+        NEED HELP ADMIN
+    </a>
+
+
+
+</div>
+
+<script>
+const video = document.getElementById("video");
+const seekBar = document.getElementById("seekBar");
+
+video.addEventListener("timeupdate", () => {
+    seekBar.value = (video.currentTime / video.duration) * 100;
+});
+
+seekBar.addEventListener("input", () => {
+    video.currentTime = (seekBar.value / 100) * video.duration;
+});
+
+function playPause() {
+    video.paused ? video.play() : video.pause();
+}
+
+function mute() {
+    video.muted = !video.muted;
+}
+
+function skip() {
+    video.currentTime += 10;
+}
+
+function full() {
+    if (video.requestFullscreen) video.requestFullscreen();
+}
+</script>
+
+</body>
+</html>
